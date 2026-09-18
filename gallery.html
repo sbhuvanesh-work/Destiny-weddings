@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore the Destiny Weddings photography portfolio." />
+    <title>Portfolio | Destiny Weddings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ivory:#f8eee3; --wine:#2a080c; --wine-dark:#190408; --rose:#e6af9f; }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--ivory); font:15px/1.6 "DM Sans",sans-serif; background:#2a080c url("red-satin-background.png") center/cover fixed; }
+      a { color:inherit; text-decoration:none; }
+      .container { width:min(1160px, calc(100% - 48px)); margin:auto; }
+      header { background:rgba(25,4,8,.78); border-bottom:1px solid rgba(248,238,227,.28); }
+      nav { min-height:84px; display:flex; align-items:center; justify-content:space-between; }
+      .brand { display:inline-flex; align-items:center; gap:12px; }
+      .brand img { width:54px; height:54px; object-fit:cover; border-radius:50%; border:1px solid rgba(255,255,255,.55); }
+      .brand-copy { display:flex; flex-direction:column; line-height:1; }
+      .brand-name { font:1.2rem "Playfair Display",serif; letter-spacing:.03em; }
+      .brand-subtitle { margin-top:7px; font-size:.52rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+      .back { color:var(--rose); font-size:.7rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
+      main { padding:75px 0 95px; }
+      .eyebrow { color:var(--rose); font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; }
+      h1 { max-width:720px; margin:12px 0 14px; font:clamp(3.3rem,7vw,6rem)/1.02 "Playfair Display",serif; font-weight:500; }
+      .intro { max-width:540px; margin-bottom:48px; color:#eadbd1; }
+      .gallery { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:245px; gap:15px; }
+      .photo { background-position:center; background-size:cover; box-shadow:0 15px 30px rgba(0,0,0,.25); transition:transform .3s ease; }
+      .photo:hover { transform:translateY(-4px); }
+      .photo { cursor:zoom-in; }
+      .lightbox { position:fixed; inset:0; z-index:20; display:none; place-items:center; padding:32px; background:rgba(10,1,3,.88); backdrop-filter:blur(8px); }
+      .lightbox.is-open { display:grid; }
+      .lightbox img { max-width:min(1100px,92vw); max-height:86vh; object-fit:contain; box-shadow:0 24px 70px rgba(0,0,0,.55); }
+      .lightbox button { position:absolute; top:20px; right:28px; border:0; background:transparent; color:var(--ivory); cursor:pointer; font:2.3rem/1 Arial,sans-serif; }
+      .photo:nth-child(1) { grid-row:span 2; background-image:url('https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1000&q=85'); }
+      .photo:nth-child(2) { background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(3) { background-image:url('https://images.unsplash.com/photo-1460978812857-470ed1c77af0?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(4) { background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(5) { grid-column:span 2; background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=85'); }
+      .photo:nth-child(6) { background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(7) { background-image:url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(8) { background-image:url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(9) { grid-row:span 2; background-image:url('https://images.unsplash.com/photo-1545232979-8bf1fdbb4d62?auto=format&fit=crop&w=900&q=85'); }
+      .photo:nth-child(10) { background-image:url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=85'); }
+      .photo:nth-child(11) { grid-column:span 2; background-image:url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1200&q=85'); }
+      .photo:nth-child(12) { background-image:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=85'); }
+      footer { padding:30px 0; background:var(--wine-dark); color:#d7c4ba; text-align:center; font-size:.72rem; } .social-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:14px 0 0; } .social-links a { padding:6px 10px; border:1px solid rgba(248,238,227,.32); color:var(--ivory); font-size:.62rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+      @media (max-width:700px) { .container { width:min(100% - 32px, 1160px); } nav { min-height:74px; } .brand img { width:46px; height:46px; } .brand-name { font-size:1.05rem; } main { padding:58px 0 70px; } .gallery { grid-template-columns:repeat(2,1fr); grid-auto-rows:210px; gap:9px; } .photo:nth-child(1),.photo:nth-child(9) { grid-row:span 1; } .photo:nth-child(5),.photo:nth-child(11) { grid-column:span 2; } }
+      @media (max-width:1024px) { .container { width:min(100% - 40px, 1160px); } .gallery { grid-auto-rows:220px; } }
+      @media (max-width:520px) { .container { width:min(100% - 28px, 1160px); } nav { gap:10px; } .brand { gap:8px; } .brand img { width:42px; height:42px; } .brand-name { font-size:1rem; } .brand-subtitle { display:none; } .back { font-size:.57rem; letter-spacing:.1em; white-space:nowrap; } .gallery { grid-template-columns:1fr; grid-auto-rows:250px; } .photo:nth-child(1), .photo:nth-child(5), .photo:nth-child(9), .photo:nth-child(11) { grid-row:span 1; grid-column:span 1; } .lightbox { padding:16px; } .lightbox button { top:12px; right:16px; } }
+    </style>
+  </head>
+  <body>
+    <header><nav class="container"><a class="brand" href="index.html" aria-label="Destiny Weddings home"><img src="destiny-weddings-full-logo.png" alt="Destiny Wedding logo" /><span class="brand-copy"><span class="brand-name">Destiny Weddings</span><span class="brand-subtitle">Fine art photography</span></span></a><a class="back" href="index.html#portfolio">← Back to home</a></nav></header>
+    <main class="container"><p class="eyebrow">The portfolio</p><h1>Moments worth holding on to.</h1><p class="intro">A selection of wedding photographs that celebrate the glances, details, laughter, and emotion that make every celebration unforgettable.</p><section class="gallery" aria-label="Photography portfolio"><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div><div class="photo"></div></section></main>
+    <footer><div>© 2026 Destiny Weddings · Photography with heart</div><p class="social-links"><a href="#" aria-label="Instagram">Instagram</a><a href="#" aria-label="YouTube">YouTube</a><a href="#" aria-label="WhatsApp">WhatsApp</a></p></footer>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full-size photograph"><button type="button" aria-label="Close photograph">×</button><img src="" alt="Expanded portfolio photograph" /></div>
+  <script>
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxImage = lightbox.querySelector("img");
+    const closeLightbox = () => lightbox.classList.remove("is-open");
+    document.querySelectorAll(".photo").forEach((photo) => {
+      photo.setAttribute("tabindex", "0");
+      photo.setAttribute("role", "button");
+      photo.setAttribute("aria-label", "View full photo");
+      const openPhoto = () => {
+        const background = getComputedStyle(photo).backgroundImage;
+        lightboxImage.src = background.slice(5, -2);
+        lightbox.classList.add("is-open");
+      };
+      photo.addEventListener("click", openPhoto);
+      photo.addEventListener("keydown", (event) => { if (["Enter", " "].includes(event.key)) openPhoto(); });
+    });
+    lightbox.querySelector("button").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeLightbox(); });
+  </script>
+  </body>
+</html>
